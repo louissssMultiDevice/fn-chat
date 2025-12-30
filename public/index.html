@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForexterChat Pro™</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Premium (sama seperti sebelumnya tapi lebih lengkap) */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --business-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --admin-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- Interface Premium -->
+    </div>
+    
+    <script>
+        class ForexterChatApp {
+            constructor() {
+                this.socket = io('http://localhost:3000');
+                this.user = null;
+                this.contacts = [];
+                this.activeChat = null;
+                this.messages = new Map();
+                this.init();
+            }
+            
+            async init() {
+                // Check existing session
+                const token = localStorage.getItem('session_token');
+                if (token) {
+                    await this.authenticate(token);
+                } else {
+                    this.showAuthScreen();
+                }
+                
+                this.setupSocketListeners();
+                this.setupUI();
+            }
+            
+            setupSocketListeners() {
+                this.socket.on('authenticated', (user) => {
+                    this.user = user;
+                    this.showMainInterface();
+                    this.loadUserData();
+                });
+                
+                this.socket.on('new_message', (message) => {
+                    this.receiveMessage(message);
+                    this.showNotification('Pesan baru', message.sender);
+                });
+                
+                this.socket.on('presence_update', (data) => {
+                    this.updateContactStatus(data.userId, data.status);
+                });
+                
+                this.socket.on('typing_indicator', (data) => {
+                    this.showTypingIndicator(data.from, data.isTyping);
+                });
+                
+                this.socket.on('incoming_call', (callData) => {
+                    this.showIncomingCall(callData);
+                });
+                
+                this.socket.on('business_approved', (data) => {
+                    this.upgradeToBusiness(data);
+                });
+                
+                this.socket.on('admin_notification', (notification) => {
+                    this.showAdminAlert(notification);
+                });
+            }
+            
+            // Implementasi fitur premium...
+        }
+        
+        window.app = new ForexterChatApp();
+    </script>
+    
+    <script src="/socket.io/socket.io.js"></script>
+</body>
+</html>
