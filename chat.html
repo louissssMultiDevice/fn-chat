@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forexter Chat - Komunitas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="chat-page">
+    <!-- Chat Header -->
+    <header class="chat-header">
+        <div class="header-left">
+            <button class="btn-menu" id="sidebarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="community-info">
+                <img src="https://files.catbox.moe/pvnz0v.jpg" alt="Community" class="community-logo">
+                <div>
+                    <h1>Forexter Network</h1>
+                    <p id="onlineCount">0 users online</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <div class="user-profile">
+                <div class="profile-dropdown">
+                    <button class="btn-profile" id="profileBtn">
+                        <img src="https://ui-avatars.com/api/?name=Guest&background=random" alt="User" id="userAvatar">
+                        <span id="userName">Guest#0000</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <a href="#" onclick="editProfile()">
+                            <i class="fas fa-user-edit"></i> Edit Profile
+                        </a>
+                        <a href="#" onclick="showSettings()">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <a href="#" onclick="logout()">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn-icon" onclick="shareCommunity()" title="Share">
+                <i class="fas fa-share-alt"></i>
+            </button>
+            
+            <button class="btn-icon" onclick="showReportModal()" title="Lapor">
+                <i class="fas fa-flag"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-users"></i> Komunitas</h3>
+            <button class="btn-close" id="closeSidebar">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <!-- Community Info -->
+            <div class="sidebar-section">
+                <div class="community-details">
+                    <img src="https://files.catbox.moe/pvnz0v.jpg" alt="Community" class="sidebar-logo">
+                    <h4>Forexter Network</h4>
+                    <p class="community-desc">Komunitas resmi Forexter Network Chat</p>
+                    <div class="community-stats">
+                        <span><i class="fas fa-user"></i> <span id="totalMembers">0</span> members</span>
+                        <span><i class="fas fa-eye"></i> <span id="totalOnline">0</span> online</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User List -->
+            <div class="sidebar-section">
+                <h5><i class="fas fa-user-friends"></i> Online Users</h5>
+                <div class="user-list" id="onlineUsers">
+                    <!-- Users will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Admin List -->
+            <div class="sidebar-section">
+                <h5><i class="fas fa-shield-alt"></i> Admins</h5>
+                <div class="admin-list" id="adminList">
+                    <!-- Admins will be loaded here -->
+                </div>
+            </div>
+            
+            <!-- Bot Commands -->
+            <div class="sidebar-section">
+                <h5><i class="fas fa-robot"></i> Bot Commands</h5>
+                <div class="commands-list">
+                    <button class="cmd-btn" onclick="sendBotCommand('!menu')">
+                        <i class="fas fa-list"></i> !menu
+                    </button>
+                    <button class="cmd-btn" onclick="sendBotCommand('!ping')">
+                        <i class="fas fa-signal"></i> !ping
+                    </button>
+                    <button class="cmd-btn" onclick="sendBotCommand('!status')">
+                        <i class="fas fa-server"></i> !status
+                    </button>
+                    <button class="cmd-btn" onclick="sendBotCommand('!admin')">
+                        <i class="fas fa-user-shield"></i> !admin
+                    </button>
+                    <button class="cmd-btn" onclick="sendBotCommand('!owner')">
+                        <i class="fas fa-crown"></i> !owner
+                    </button>
+                    <button class="cmd-btn" onclick="showTTSModal()">
+                        <i class="fas fa-volume-up"></i> !tts
+                    </button>
+                    <button class="cmd-btn" onclick="sendBotCommand('!listfitur')">
+                        <i class="fas fa-code"></i> !listfitur
+                    </button>
+                    <button class="cmd-btn" onclick="sendBotCommand('!getcode')">
+                        <i class="fas fa-file-code"></i> !getcode
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Quick Actions -->
+            <div class="sidebar-section">
+                <h5><i class="fas fa-bolt"></i> Quick Actions</h5>
+                <div class="action-buttons">
+                    <button class="action-btn" onclick="clearChat()">
+                        <i class="fas fa-trash"></i> Clear Chat
+                    </button>
+                    <button class="action-btn" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i> Theme
+                    </button>
+                    <button class="action-btn" onclick="showHelp()">
+                        <i class="fas fa-question-circle"></i> Help
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Chat Area -->
+    <main class="chat-main">
+        <div class="chat-container">
+            <!-- Welcome Message -->
+            <div class="welcome-message" id="welcomeMessage">
+                <div class="welcome-content">
+                    <h2><i class="fas fa-comments"></i> Welcome to Forexter Network</h2>
+                    <p>Start chatting with the community. Use bot commands by typing <code>!</code> prefix.</p>
+                    <div class="welcome-tips">
+                        <div class="tip">
+                            <i class="fas fa-robot"></i>
+                            <span>Type <code>!menu</code> to see bot commands</span>
+                        </div>
+                        <div class="tip">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Use <code>!report</code> to report issues</span>
+                        </div>
+                        <div class="tip">
+                            <i class="fas fa-share-alt"></i>
+                            <span>Share community link to invite friends</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Messages Container -->
+            <div class="messages-container" id="messagesContainer">
+                <!-- Messages will be appended here -->
+            </div>
+            
+            <!-- Typing Indicator -->
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <span id="typingUser">Someone is typing...</span>
+            </div>
+        </div>
+        
+        <!-- Chat Input -->
+        <div class="chat-input-container">
+            <div class="input-actions">
+                <button class="input-btn" onclick="toggleEmojiPicker()" title="Emoji">
+                    <i class="far fa-smile"></i>
+                </button>
+                <button class="input-btn" onclick="attachFile()" title="Attach File">
+                    <i class="fas fa-paperclip"></i>
+                </button>
+                <button class="input-btn" onclick="attachImage()" title="Attach Image">
+                    <i class="fas fa-image"></i>
+                </button>
+                <button class="input-btn" onclick="recordAudio()" title="Record Audio">
+                    <i class="fas fa-microphone"></i>
+                </button>
+            </div>
+            
+            <div class="input-wrapper">
+                <input 
+                    type="text" 
+                    id="messageInput" 
+                    placeholder="Type your message... (Use ! for bot commands)"
+                    onkeypress="handleKeyPress(event)"
+                >
+                <div class="input-hints" id="commandHints">
+                    <!-- Command hints will appear here -->
+                </div>
+            </div>
+            
+            <button class="btn-send" onclick="sendMessage()" id="sendButton">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        
+        <!-- Emoji Picker -->
+        <div class="emoji-picker" id="emojiPicker">
+            <div class="emoji-categories">
+                <button class="emoji-category active" data-category="smileys">😀</button>
+                <button class="emoji-category" data-category="people">👋</button>
+                <button class="emoji-category" data-category="nature">🐶</button>
+                <button class="emoji-category" data-category="food">🍎</button>
+                <button class="emoji-category" data-category="activities">⚽</button>
+                <button class="emoji-category" data-category="objects">💡</button>
+                <button class="emoji-category" data-category="symbols">❤️</button>
+                <button class="emoji-category" data-category="flags">🎌</button>
+            </div>
+            <div class="emoji-grid" id="emojiGrid">
+                <!-- Emojis will be loaded here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    
+    <!-- Profile Modal -->
+    <div class="modal" id="profileModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-edit"></i> Edit Profile</h3>
+                <button class="modal-close" onclick="closeModal('profileModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-form">
+                    <div class="avatar-upload">
+                        <div class="avatar-preview" id="avatarPreview">
+                            <img src="https://ui-avatars.com/api/?name=Guest&background=random" alt="Avatar">
+                        </div>
+                        <button class="btn-change-avatar" onclick="changeAvatar()">
+                            <i class="fas fa-camera"></i> Change Avatar
+                        </button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileName"><i class="fas fa-user"></i> Display Name</label>
+                        <input type="text" id="profileName" placeholder="Enter your name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileTag"><i class="fas fa-tag"></i> Tag</label>
+                        <input type="text" id="profileTag" placeholder="e.g., #0001" maxlength="4">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profileBio"><i class="fas fa-edit"></i> Bio</label>
+                        <textarea id="profileBio" placeholder="Tell us about yourself..." rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label><i class="fas fa-palette"></i> Theme Color</label>
+                        <div class="color-picker">
+                            <button class="color-option" style="background: #7289da;" onclick="selectColor('#7289da')"></button>
+                            <button class="color-option" style="background: #43b581;" onclick="selectColor('#43b581')"></button>
+                            <button class="color-option" style="background: #faa61a;" onclick="selectColor('#faa61a')"></button>
+                            <button class="color-option" style="background: #f04747;" onclick="selectColor('#f04747')"></button>
+                            <button class="color-option" style="background: #593695;" onclick="selectColor('#593695')"></button>
+                            <button class="color-option" style="background: #202225;" onclick="selectColor('#202225')"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('profileModal')">Cancel</button>
+                <button class="btn-primary" onclick="saveProfile()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TTS Modal -->
+    <div class="modal" id="ttsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-volume-up"></i> TTS Tokoh Indonesia</h3>
+                <button class="modal-close" onclick="closeModal('ttsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tts-form">
+                    <div class="form-group">
+                        <label for="ttsText">Text untuk TTS</label>
+                        <textarea 
+                            id="ttsText" 
+                            placeholder="Masukkan teks yang ingin diubah menjadi suara..."
+                            rows="3"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ttsTokoh">Pilih Tokoh</label>
+                        <div class="tokoh-grid">
+                            <div class="tokoh-option" onclick="selectTokoh('jokowi')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/147/147144.png" alt="Jokowi">
+                                <span>Jokowi</span>
+                            </div>
+                            <div class="tokoh-option" onclick="selectTokoh('megawati')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/4323/4323005.png" alt="Megawati">
+                                <span>Megawati</span>
+                            </div>
+                            <div class="tokoh-option" onclick="selectTokoh('prabowo')">
+                                <img src="https://cdn-icons-png.flaticon.com/512/147/147142.png" alt="Prabowo">
+                                <span>Prabowo</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tts-preview">
+                        <audio id="ttsAudio" controls></audio>
+                        <button class="btn-secondary" onclick="previewTTS()" id="previewTTSBtn">
+                            <i class="fas fa-play"></i> Preview
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('ttsModal')">Cancel</button>
+                <button class="btn-primary" onclick="sendTTS()">
+                    <i class="fas fa-paper-plane"></i> Send to Chat
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-flag"></i> Laporkan Komunitas</h3>
+                <button class="modal-close" onclick="closeModal('reportModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="report-form">
+                    <div class="form-group">
+                        <label for="reportType">Jenis Laporan</label>
+                        <select id="reportType" onchange="toggleReportFields()">
+                            <option value="">Pilih jenis laporan...</option>
+                            <option value="spam">Spam</option>
+                            <option value="harassment">Pelecehan</option>
+                            <option value="inappropriate">Konten Tidak Pantas</option>
+                            <option value="scam">Penipuan</option>
+                            <option value="other">Lainnya</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportDetails">Detail Laporan</label>
+                        <textarea 
+                            id="reportDetails" 
+                            placeholder="Jelaskan kejadian yang ingin dilaporkan..."
+                            rows="4"
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportEvidence">Bukti (Opsional)</label>
+                        <div class="file-upload">
+                            <input type="file" id="reportEvidence" accept="image/*,.pdf,.doc,.docx" hidden>
+                            <button class="btn-upload" onclick="document.getElementById('reportEvidence').click()">
+                                <i class="fas fa-upload"></i> Upload File
+                            </button>
+                            <span id="fileName">No file chosen</span>
+                        </div>
+                        <small>Upload screenshot, dokumen, atau bukti lainnya (max 5MB)</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reportUser">User yang Dilaporkan (Opsional)</label>
+                        <input type="text" id="reportUser" placeholder="Nama user atau ID">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('reportModal')">Cancel</button>
+                <button class="btn-danger" onclick="submitReport()">
+                    <i class="fas fa-paper-plane"></i> Kirim Laporan
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-cog"></i> Settings</h3>
+                <button class="modal-close" onclick="closeModal('settingsModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-tabs">
+                    <button class="tab-btn active" onclick="openSettingsTab('general')">General</button>
+                    <button class="tab-btn" onclick="openSettingsTab('notifications')">Notifications</button>
+                    <button class="tab-btn" onclick="openSettingsTab('privacy')">Privacy</button>
+                    <button class="tab-btn" onclick="openSettingsTab('appearance')">Appearance</button>
+                </div>
+                
+                <div class="settings-content">
+                    <!-- General Tab -->
+                    <div class="tab-content active" id="generalTab">
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" id="autoJoin" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <h4>Auto Join Community</h4>
+                                <p>Otomatis masuk ke komunitas saat membuka chat</p>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" id="showTimestamps" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <h4>Show Timestamps</h4>
+                                <p>Tampilkan waktu pada setiap pesan</p>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label class="switch">
+                                <input type="checkbox" id="enableSounds" checked>
+                                <span class="slider"></span>
+                            </label>
+                            <div class="setting-info">
+                                <h4>Enable Sounds</h4>
+                                <p>Putar suara untuk notifikasi pesan baru</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Appearance Tab -->
+                    <div class="tab-content" id="appearanceTab">
+                        <div class="setting-item">
+                            <label for="themeSelect">Theme</label>
+                            <select id="themeSelect">
+                                <option value="dark">Dark</option>
+                                <option value="light">Light</option>
+                                <option value="blue">Blue</option>
+                                <option value="purple">Purple</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="fontSize">Font Size</label>
+                            <select id="fontSize">
+                                <option value="small">Small</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="large">Large</option>
+                            </select>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <label for="messageDensity">Message Density</label>
+                            <select id="messageDensity">
+                                <option value="compact">Compact</option>
+                                <option value="comfortable" selected>Comfortable</option>
+                                <option value="spacious">Spacious</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('settingsModal')">Cancel</button>
+                <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bot Response Modal -->
+    <div class="modal bot-response-modal" id="botResponseModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> Forexter Bot Response</h3>
+                <button class="modal-close" onclick="closeModal('botResponseModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="bot-response" id="botResponseContent">
+                    <!-- Bot response will be shown here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/chat.js"></script>
+    <script src="js/bot-integration.js"></script>
+</body>
+</html>
