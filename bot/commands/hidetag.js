@@ -3,6 +3,7 @@ module.exports = {
     description: 'Tag semua member tanpa @',
     aliases: ['tagall', 'hidetagall'],
     admin: true, // Only admins can use this
+    usage: '!hidetag', '!ht',
     async execute(msg, sock, msgHandler, args) {
         try {
             const isGroup = msg.key.remoteJid.endsWith('@g.us');
