@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forexter Network Chat</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="https://files.catbox.moe/pvnz0v.jpg" alt="Forexter Logo" class="logo">
+                <h1>Forexter<span>Network</span></h1>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#features" class="nav-link">Fitur</a>
+                <a href="#community" class="nav-link">Komunitas</a>
+                <a href="#about" class="nav-link">Tentang</a>
+                <a href="chat.html" class="btn-join">Mulai Chat</a>
+                <a href="admin/login.html" class="btn-admin">Admin</a>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h2 class="hero-title">Selamat Datang di <span>Forexter Network Chat</span></h2>
+                <p class="hero-description">
+                    Platform chat komunitas dengan integrasi bot canggih, fitur AI, dan koneksi langsung ke Discord.
+                    Bergabunglah dengan komunitas kami yang terus berkembang!
+                </p>
+                <div class="hero-buttons">
+                    <a href="chat.html" class="btn-primary">
+                        <i class="fas fa-comments"></i> Mulai Chat Sekarang
+                    </a>
+                    <a href="#community" class="btn-secondary">
+                        <i class="fas fa-users"></i> Lihat Komunitas
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-user-friends"></i>
+                        <span class="stat-number" id="memberCount">0</span>
+                        <span class="stat-label">Member Aktif</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-robot"></i>
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Bot Online</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-shield-alt"></i>
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Aman & Terpercaya</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://files.catbox.moe/pvnz0v.jpg" alt="Forexter Chat Preview">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Fitur Unggulan</h2>
+            <p class="section-subtitle">Nikmati berbagai fitur canggih yang membuat chatting lebih menyenangkan</p>
+            
+            <div class="features-grid">
+                <!-- Fitur 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Chat Bot</h3>
+                    <p>Bot cerdas dengan berbagai perintah dan fitur AI seperti TTS tokoh Indonesia</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> TTS Jokowi, Megawati, Prabowo</li>
+                        <li><i class="fas fa-check"></i> Respons cepat</li>
+                        <li><i class="fas fa-check"></i> Multi-language support</li>
+                    </ul>
+                </div>
+
+                <!-- Fitur 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3>Discord Integration</h3>
+                    <p>Terhubung langsung dengan Discord melalui webhook untuk sinkronisasi pesan</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Kirim pesan ke Discord</li>
+                        <li><i class="fas fa-check"></i> Terima pesan dari Discord</li>
+                        <li><i class="fas fa-check"></i> Webhook real-time</li>
+                    </ul>
+                </div>
+
+                <!-- Fitur 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3>Admin Tools</h3>
+                    <p>Panel admin lengkap untuk mengelola komunitas dan member</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Manajemen member</li>
+                        <li><i class="fas fa-check"></i> Sistem laporan</li>
+                        <li><i class="fas fa-check"></i> Pengaturan komunitas</li>
+                    </ul>
+                </div>
+
+                <!-- Fitur 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Keamanan</h3>
+                    <p>Sistem keamanan terbaik dengan fitur laporan dan moderasi</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Laporkan pelanggaran</li>
+                        <li><i class="fas fa-check"></i> Filter pesan otomatis</li>
+                        <li><i class="fas fa-check"></i> Backend aman</li>
+                    </ul>
+                </div>
+
+                <!-- Fitur 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Plugin System</h3>
+                    <p>Sistem plugin yang memungkinkan penambahan fitur baru</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Custom commands</li>
+                        <li><i class="fas fa-check"></i> External plugins</li>
+                        <li><i class="fas fa-check"></i> Auto-update</li>
+                    </ul>
+                </div>
+
+                <!-- Fitur 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>Akses dari perangkat apapun dengan tampilan yang optimal</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Mobile friendly</li>
+                        <li><i class="fas fa-check"></i> Desktop optimized</li>
+                        <li><i class="fas fa-check"></i> Fast loading</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="community">
+        <div class="container">
+            <h2 class="section-title">Komunitas Forexter Network</h2>
+            <p class="section-subtitle">Bergabunglah dengan ribuan member lainnya</p>
+            
+            <div class="community-stats">
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Auto Join Community</h3>
+                        <p>Semua nomor otomatis masuk ke komunitas chat</p>
+                    </div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Tanpa Login</h3>
+                        <p>Cukup masukkan nama dan tag untuk mulai chatting</p>
+                    </div>
+                </div>
+                
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Share Community</h3>
+                        <p>Bagikan komunitas dengan link khusus</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="community-actions">
+                <a href="chat.html" class="btn-large">
+                    <i class="fas fa-sign-in-alt"></i> Gabung Sekarang
+                </a>
+                <button class="btn-large btn-share" onclick="shareCommunity()">
+                    <i class="fas fa-share"></i> Bagikan Komunitas
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bot Commands Preview -->
+    <section class="commands">
+        <div class="container">
+            <h2 class="section-title">Fitur Bot Forexter</h2>
+            <p class="section-subtitle">Gunakan berbagai perintah yang tersedia</p>
+            
+            <div class="commands-preview">
+                <div class="command-list">
+                    <h3><i class="fas fa-terminal"></i> Command List</h3>
+                    <ul>
+                        <li><code>!menu</code> - Menu utama bot</li>
+                        <li><code>!ping</code> - Cek status bot</li>
+                        <li><code>!status</code> - Status server</li>
+                        <li><code>!tts [teks], [tokoh]</code> - TTS tokoh</li>
+                        <li><code>!admin</code> - List admin</li>
+                        <li><code>!owner</code> - Kontak owner</li>
+                        <li><code>!hidetag</code> - Tag all member</li>
+                        <li><code>!tourl</code> - Upload media ke URL</li>
+                        <li><code>!getcode [file]</code> - Lihat kode file</li>
+                        <li><code>!listfitur</code> - List semua fitur</li>
+                    </ul>
+                </div>
+                
+                <div class="command-demo">
+                    <div class="chat-demo">
+                        <div class="message user">
+                            <span class="sender">User:</span>
+                            <span class="text">!tts halo semua, jokowi</span>
+                        </div>
+                        <div class="message bot">
+                            <span class="sender">Forexter Bot:</span>
+                            <span class="text">
+                                <i class="fas fa-volume-up"></i> Mengirim audio TTS Jokowi...
+                            </span>
+                        </div>
+                        <div class="message user">
+                            <span class="sender">User:</span>
+                            <span class="text">!status</span>
+                        </div>
+                        <div class="message bot">
+                            <span class="sender">Forexter Bot:</span>
+                            <span class="text">
+                                🟢 Server Online<br>
+                                Players: 45/100<br>
+                                Version: 1.20.1
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="https://files.catbox.moe/pvnz0v.jpg" alt="Logo" class="footer-logo">
+                    <h3>Forexter Network</h3>
+                    <p>Powered By NdiiClouD Team</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="chat.html">Chat</a>
+                    <a href="#features">Fitur</a>
+                    <a href="#community">Komunitas</a>
+                    <a href="admin/login.html">Admin</a>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-envelope"></i> ndii.cloud0@gmail.com</p>
+                    <p><i class="fas fa-globe"></i> www.forexternetwork.my.id</p>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Forexter Network. All rights reserved. Created by NdiiClouD Team</p>
+                <p>Version 1.2.0</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
