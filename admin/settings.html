@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Forexter Admin</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="settings-page">
+    <!-- Header -->
+    <header class="settings-header">
+        <div class="header-left">
+            <a href="dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Dashboard</span>
+            </a>
+        </div>
+        <div class="header-center">
+            <h1><i class="fas fa-cog"></i> System Settings</h1>
+        </div>
+        <div class="header-right">
+            <button class="btn-save" onclick="saveAllSettings()">
+                <i class="fas fa-save"></i> Save All
+            </button>
+        </div>
+    </header>
+
+    <main class="settings-main">
+        <div class="settings-sidebar">
+            <nav class="settings-nav">
+                <div class="nav-group">
+                    <h4><i class="fas fa-globe"></i> Website</h4>
+                    <a href="#general" class="nav-link active" onclick="showSettingsTab('general')">
+                        <i class="fas fa-sliders-h"></i> General
+                    </a>
+                    <a href="#appearance" class="nav-link" onclick="showSettingsTab('appearance')">
+                        <i class="fas fa-palette"></i> Appearance
+                    </a>
+                    <a href="#maintenance" class="nav-link" onclick="showSettingsTab('maintenance')">
+                        <i class="fas fa-tools"></i> Maintenance
+                    </a>
+                </div>
+                
+                <div class="nav-group">
+                    <h4><i class="fas fa-robot"></i> Bot</h4>
+                    <a href="#bot-settings" class="nav-link" onclick="showSettingsTab('bot-settings')">
+                        <i class="fas fa-cogs"></i> Bot Settings
+                    </a>
+                    <a href="#bot-commands" class="nav-link" onclick="showSettingsTab('bot-commands')">
+                        <i class="fas fa-terminal"></i> Commands
+                    </a>
+                    <a href="#bot-webhook" class="nav-link" onclick="showSettingsTab('bot-webhook')">
+                        <i class="fas fa-link"></i> Webhook
+                    </a>
+                </div>
+                
+                <div class="nav-group">
+                    <h4><i class="fas fa-users"></i> Community</h4>
+                    <a href="#community-settings" class="nav-link" onclick="showSettingsTab('community-settings')">
+                        <i class="fas fa-comments"></i> Settings
+                    </a>
+                    <a href="#community-rules" class="nav-link" onclick="showSettingsTab('community-rules')">
+                        <i class="fas fa-gavel"></i> Rules
+                    </a>
+                    <a href="#community-moderation" class="nav-link" onclick="showSettingsTab('community-moderation')">
+                        <i class="fas fa-shield-alt"></i> Moderation
+                    </a>
+                </div>
+                
+                <div class="nav-group">
+                    <h4><i class="fas fa-bell"></i> Notifications</h4>
+                    <a href="#notification-settings" class="nav-link" onclick="showSettingsTab('notification-settings')">
+                        <i class="fas fa-envelope"></i> Settings
+                    </a>
+                    <a href="#email-settings" class="nav-link" onclick="showSettingsTab('email-settings')">
+                        <i class="fas fa-at"></i> Email
+                    </a>
+                    <a href="#discord-webhook" class="nav-link" onclick="showSettingsTab('discord-webhook')">
+                        <i class="fab fa-discord"></i> Discord
+                    </a>
+                </div>
+                
+                <div class="nav-group">
+                    <h4><i class="fas fa-database"></i> Database</h4>
+                    <a href="#database-settings" class="nav-link" onclick="showSettingsTab('database-settings')">
+                        <i class="fas fa-server"></i> Settings
+                    </a>
+                    <a href="#backup-restore" class="nav-link" onclick="showSettingsTab('backup-restore')">
+                        <i class="fas fa-download"></i> Backup
+                    </a>
+                    <a href="#api-settings" class="nav-link" onclick="showSettingsTab('api-settings')">
+                        <i class="fas fa-code"></i> API
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <div class="settings-content">
+            <!-- General Settings -->
+            <div class="settings-tab active" id="generalTab">
+                <div class="tab-header">
+                    <h2><i class="fas fa-sliders-h"></i> General Settings</h2>
+                    <p class="tab-subtitle">Configure basic website settings</p>
+                </div>
+                
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Site Name</h4>
+                            <p>The name displayed on the website</p>
+                        </div>
+                        <input type="text" id="siteName" value="Forexter Network" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Site Description</h4>
+                            <p>Brief description of your community</p>
+                        </div>
+                        <textarea id="siteDescription" class="setting-textarea">Komunitas resmi Forexter Network Chat</textarea>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Site URL</h4>
+                            <p>Your website's main URL</p>
+                        </div>
+                        <input type="url" id="siteUrl" value="https://forexternetwork.my.id" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Contact Email</h4>
+                            <p>Email address for user inquiries</p>
+                        </div>
+                        <input type="email" id="contactEmail" value="support@forexternetwork.my.id" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Auto Join Community</h4>
+                            <p>Users automatically join community on first visit</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="autoJoinSetting" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Allow Guest Access</h4>
+                            <p>Allow users to chat without registration</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="guestAccess" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Maintenance Settings -->
+            <div class="settings-tab" id="maintenanceTab">
+                <div class="tab-header">
+                    <h2><i class="fas fa-tools"></i> Maintenance Settings</h2>
+                    <p class="tab-subtitle">Configure maintenance mode and updates</p>
+                </div>
+                
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Maintenance Mode</h4>
+                            <p>Enable to take website offline for maintenance</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="maintenanceMode">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="maintenance-options" id="maintenanceOptions">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Maintenance Message</h4>
+                                <p>Message displayed to users during maintenance</p>
+                            </div>
+                            <textarea id="maintenanceMessage" class="setting-textarea">Website is under maintenance. Please check back later.</textarea>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Allow Admin Access</h4>
+                                <p>Allow administrators to access during maintenance</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="adminAccess" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Scheduled Maintenance</h4>
+                                <p>Schedule maintenance for specific time</p>
+                            </div>
+                            <div class="datetime-input">
+                                <input type="datetime-local" id="maintenanceSchedule">
+                            </div>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Maintenance Duration</h4>
+                                <p>Estimated duration in hours</p>
+                            </div>
+                            <input type="number" id="maintenanceDuration" min="1" max="24" value="2" class="setting-input">
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Update System</h4>
+                            <p>Check for and install system updates</p>
+                        </div>
+                        <button class="btn-update" onclick="checkForUpdates()">
+                            <i class="fas fa-sync"></i> Check for Updates
+                        </button>
+                    </div>
+                    
+                    <div class="update-status" id="updateStatus">
+                        <!-- Update info will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bot Settings -->
+            <div class="settings-tab" id="botSettingsTab">
+                <div class="tab-header">
+                    <h2><i class="fas fa-cogs"></i> Bot Settings</h2>
+                    <p class="tab-subtitle">Configure Forexter Bot settings</p>
+                </div>
+                
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Bot Name</h4>
+                            <p>Display name for the bot</p>
+                        </div>
+                        <input type="text" id="botName" value="Forexter Bot" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Bot Prefix</h4>
+                            <p>Command prefix for bot commands</p>
+                        </div>
+                        <input type="text" id="botPrefix" value="!" maxlength="3" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Bot Status</h4>
+                            <p>Current bot status message</p>
+                        </div>
+                        <input type="text" id="botStatus" value="Online | Type !menu" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Enable AI Features</h4>
+                            <p>Enable AI features like TTS and responses</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="enableAI" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Auto Responder</h4>
+                            <p>Enable automatic responses to common queries</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="autoResponder" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Bot Administrators</h4>
+                            <p>Users with bot admin privileges</p>
+                        </div>
+                        <div class="admin-list" id="botAdmins">
+                            <!-- Bot admins will be listed here -->
+                        </div>
+                        <button class="btn-add-admin" onclick="addBotAdmin()">
+                            <i class="fas fa-plus"></i> Add Admin
+                        </button>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Bot Activity Logging</h4>
+                            <p>Log all bot commands and activities</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="botLogging" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discord Webhook Settings -->
+            <div class="settings-tab" id="webhookTab">
+                <div class="tab-header">
+                    <h2><i class="fab fa-discord"></i> Discord Webhook Settings</h2>
+                    <p class="tab-subtitle">Configure Discord integration</p>
+                </div>
+                
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Discord Webhook URL</h4>
+                            <p>Webhook URL for Discord integration</p>
+                        </div>
+                        <input type="url" id="discordWebhook" value="https://discord.com/api/webhooks/1447218191813316710/5BOwc4MKU9mNeEdDJ6a_gUH6MUBQeVeLh3QKKv1tuAd_1KBi2PtFBwpX-hBXLBJxIal7" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Webhook Name</h4>
+                            <p>Display name for Discord webhook</p>
+                        </div>
+                        <input type="text" id="webhookName" value="Forexter Bot" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Webhook Avatar URL</h4>
+                            <p>Avatar image for Discord webhook</p>
+                        </div>
+                        <input type="url" id="webhookAvatar" value="https://files.catbox.moe/pvnz0v.jpg" class="setting-input">
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Enable Webhook</h4>
+                            <p>Enable Discord webhook integration</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="enableWebhook" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div class="webhook-options">
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Send Messages to Discord</h4>
+                                <p>Forward chat messages to Discord</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="sendToDiscord" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Receive Discord Messages</h4>
+                                <p>Show Discord messages in chat</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="receiveFromDiscord" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Report to Discord</h4>
+                                <p>Send reports to Discord channel</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="reportToDiscord" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="setting-item">
+                            <div class="setting-info">
+                                <h4>Bot Commands to Discord</h4>
+                                <p>Log bot commands to Discord</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" id="logCommandsToDiscord" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Test Webhook</h4>
+                            <p>Send a test message to Discord</p>
+                        </div>
+                        <button class="btn-test" onclick="testWebhook()">
+                            <i class="fas fa-paper-plane"></i> Test Webhook
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-exclamation-triangle"></i> Confirm Action</h3>
+            </div>
+            <div class="modal-body">
+                <p id="confirmMessage">Are you sure you want to perform this action?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('confirmModal')">Cancel</button>
+                <button class="btn-primary" id="confirmActionBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>
